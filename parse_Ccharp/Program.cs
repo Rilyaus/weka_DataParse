@@ -29,7 +29,7 @@ namespace parse_Ccharp
 				int count = 0;
 
                 int lineCount = File.ReadAllLines(dirPath + @"\" + item.Name).Count();
-                int trainCount = (lineCount / 3) * 2 + (lineCount % 3) + 2;
+                int trainCount = (lineCount / 3) * 2 + (lineCount % 3);
                 
 				while( sr.Peek() >= 0 ) {
 					count++;
