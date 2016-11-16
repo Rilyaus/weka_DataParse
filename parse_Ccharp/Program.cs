@@ -27,6 +27,7 @@ namespace parse_Ccharp
                 List<String> oParts = new List<string>();
 
 				int count = 0;
+                int divideCount = 0;
 
                 int lineCount = File.ReadAllLines(dirPath + @"\" + item.Name).Count();
                 int trainCount = (lineCount / 3) * 2 + (lineCount % 3);
@@ -35,7 +36,7 @@ namespace parse_Ccharp
 					count++;
 					var parts = sr.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-					if( count > 2 && count < trainCount ) {
+					if( count > 2 && divideCount < trainCount ) {
 						for( int i=0 ; i<parts.Length ; i++ ) {
 							if( i < 4 ) {
 								sTrain.Write("{0,3} ", parts[i]);
@@ -54,7 +55,8 @@ namespace parse_Ccharp
 							}
 						}
                         sTrain.WriteLine();
-					} else if( count >= trainCount) {
+                        divideCount++;
+					} else if( divideCount >= trainCount) {
                         for (int i = 0; i < parts.Length; i++) {
                             if (i < 4) {
                                 sTest.Write("{0,3} ", parts[i]);
@@ -73,6 +75,7 @@ namespace parse_Ccharp
                             }
                         }
                         sTest.WriteLine();
+                        divideCount++;
                     }
 
 					//if( count == 10 ) break;
